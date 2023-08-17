@@ -1,0 +1,13 @@
+body{
+    background-color: black;
+    color: white;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    font-family: 'Ningst Smile', sans-serif;
+    letter-spacing: 4px;
+}
+
+@import url('https://fonts.cdnfonts.com/css/ningst-smile');
