@@ -30,11 +30,15 @@ class Users {
       });
     });
   }
-  async login(req, res) {
+async login(req, res) {
     const { emailAdd, userPass } = req.body;
+    // query
     const query = `
-            SELECT firstName, lastName, gender, userDOB, emailAdd, profileUrl FROM Users WHERE emailADD = ?
-        `;
+      SELECT firstName, lastName,
+       gender, userDOB, emailAdd,
+        userPass, profileUrl FROM
+         Users WHERE emailAdd = ?
+    `;
     db.query(query, [emailAdd], async (err, result) => {
       if (err) throw err;
       if (!result?.length) {
@@ -45,11 +49,13 @@ class Users {
       } else {
         await compare(userPass, result[0].userPass, (cerr, cresult) => {
           if (cerr) throw cerr;
+          // Create a token
           const token = createToken({
             emailAdd,
             userPass,
           });
-          res.cookie("legitUser", token, {
+          // Save A token
+          res.cookie("realUser", token, {
             expires: new Date(Date.now() + 259200000),
             httpOnly: true,
           });
@@ -62,14 +68,14 @@ class Users {
           } else {
             res.json({
               status: res.statusCode,
-              msg: "Invalid Login",
+              msg: "Invalid login",
             });
           }
         });
       }
     });
   }
-  async registerUser() {
+  async registerUser(req, res) {
     const data = req.body;
     data.userPass = await hash(data.userPass, 15);
     const user = {
