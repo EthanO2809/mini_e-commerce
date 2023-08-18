@@ -4,7 +4,7 @@ const { verifyAToken } = require("../middleware/AuthenticateUser");
 const routes = express.Router();
 
 //import all model's objects
-const { users, books, bookauthor, orders } = require("../model");
+const { users, orders, Products } = require("../model");
 
 //=======user's router=========
 routes.get("/users", (req, res) => {
@@ -35,37 +35,37 @@ routes.post("/login", bodyParser.json(), (req, res) => {
   users.login(req, res);
 });
 
-routes.get("/books", (req, res) => {
-  books.fetchBooks(req, res);
+routes.get("/Products", (req, res) => {
+  Products.fetchProducts(req, res);
 });
-routes.get("/book/:id", (req, res) => {
-  books.fetchBook(req, res);
+routes.get("/Products/:id", (req, res) => {
+  Products.fetchProducts(req, res);
 });
-routes.post("/newbook", bodyParser.json(), (req, res) => {
-  books.addBook(req, res);
+routes.post("/Products", bodyParser.json(), (req, res) => {
+  Products.addProduct(req, res);
 });
-routes.patch("/book/:id", bodyParser.json(), (req, res) => {
-  books.updateBook(req, res);
+routes.patch("/Products/:id", bodyParser.json(), (req, res) => {
+  Products.updateProduct(req, res);
 });
-routes.delete("/book/:id", (req, res) => {
-  books.removeBook(req, res);
+routes.delete("/Products/:id", (req, res) => {
+  Products.removeProduct(req, res);
 });
 // ============ Books' router ==============
-routes.get("/bookauthors", (req, res) => {
-  bookAuthors.fetchAuthors(req, res);
-});
-routes.get("/bookauthor/:id", (req, res) => {
-  bookAuthors.fetchAuthor(req, res);
-});
-routes.post("/addauthor", bodyParser.json(), (req, res) => {
-  bookAuthors.addAuthor(req, res);
-});
-routes.patch("/bookauthor/:id", bodyParser.json(), (req, res) => {
-  bookAuthors.updateAuthor(req, res);
-});
-routes.delete("/bookauthor/:id", (req, res) => {
-  bookAuthors.removeAuthor(req, res);
-});
+// routes.get("/bookauthors", (req, res) => {
+//   bookAuthors.fetchAuthors(req, res);
+// });
+// routes.get("/bookauthor/:id", (req, res) => {
+//   bookAuthors.fetchAuthor(req, res);
+// });
+// routes.post("/addauthor", bodyParser.json(), (req, res) => {
+//   bookAuthors.addAuthor(req, res);
+// });
+// routes.patch("/bookauthor/:id", bodyParser.json(), (req, res) => {
+//   bookAuthors.updateAuthor(req, res);
+// });
+// routes.delete("/bookauthor/:id", (req, res) => {
+//   bookAuthors.removeAuthor(req, res);
+// });
 
 // ============ Orders' router ==============
 routes.get("/orders", (req, res) => {

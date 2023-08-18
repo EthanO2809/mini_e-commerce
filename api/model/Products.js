@@ -1,24 +1,24 @@
 const db = require('../config')
 
 class Products{
-    fetchBooks(req, res){
+    fetchProducts(req, res){
         const query = `
             SELECT ProductID, ProductURL,ProductTitle, ProductDescription, ProductPrice 
             FROM Products
         `
-        db.query(query, (err, results)=>{
-            if (err) throw err
+        db.query(query, (err, data) => {
+            if (err) throw err;
             res.json({
-                status: res.statusCode,
-                results
-            })
-        })
+              status: res.statusCode,
+              results: data,
+            });
+          });
     }
     fetchProducts(req, res){
         const query = `
             SELECT ProductID, ProductURL,ProductTitle, ProductDescription, ProductPrice 
             FROM Products 
-            WHERE ProductID = ${req.params.ProductID}
+            WHERE ProductID = ${req.params.id}
         `
         db.query(query, (err, result)=>{
             if (err) throw err
