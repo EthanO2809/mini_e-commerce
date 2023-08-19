@@ -1,7 +1,7 @@
 const db = require('../config')
 
 class Products{
-    fetchBooks(req, res){
+    fetchProducts(req, res){
         const query = `
             SELECT ProductID, ProductURL,ProductTitle, ProductDescription, ProductPrice 
             FROM Products

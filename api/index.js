@@ -1,10 +1,10 @@
 const cookieParser = require("cookie-parser");
 const { express, routes } = require("./controller");
+const app = express();
 const path = require("path");
 // const log = require('console');
 const errorHandling = require('./middleware/ErrorHandling')
 const port = +process.env.PORT || 3000;
-const app = express();
 const cors = require("cors");
 // log("")
 

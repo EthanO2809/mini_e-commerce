@@ -1,9 +1,9 @@
-const users = require('./Users')
+const Users = require('./Users')
 const Products = require('./Products')
-const orders = require('./Orders')
+const Orders = require('./Orders')
 
 module.exports = {
-    users: new users(),
+    users: new Users(),
     Products: new Products(),
-    orders: new orders()
+    orders: new Orders()
 }
